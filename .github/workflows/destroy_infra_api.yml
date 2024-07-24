@@ -1,0 +1,77 @@
+name: Destroy Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      dir:
+        description: 'Diretório com os recursos a serem destruídos.'
+        required: true
+        default: 'terraform'
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   
+  TF_VAR_aws_account: ${{ secrets.AWS_ACCOUNT }}
+
+jobs:
+  destroy_infrastructure:
+    runs-on: ubuntu-latest
+    name: Destroy Infrastructure
+    env:
+      TF_WORKING_DIR: ${{ github.event.inputs.dir }}
+      TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      TF_VAR_user_pool: ${{ secrets.USER_POOL_COGNITO }}
+      TF_VAR_user_pool_client: ${{ secrets.USER_POOL_CLIENT }}
+      TF_VAR_allowed_oauth_scopes: ${{ secrets.ALLOWED_OAUTH_SCOPES }}
+      TF_VAR_user_pool_domain: ${{ secrets.COGNITO_USER_POOL_DOMAIN }}
+      TF_VAR_cognito_resource_server_name: ${{ secrets.COGNITO_RESOURCE_SERVER_NAME }}
+      TF_VAR_cognito_resource_server_identifier: ${{ secrets.COGNITO_RESOURCE_SERVER_IDENTIFIER }}
+      TF_VAR_cognito_scope_name: ${{ secrets.COGNITO_SCOPE_NAME }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+
+      - name: Update EKS Kubeconfig
+        run: |
+          aws eks --region ${{ secrets.AWS_DEFAULT_REGION }} update-kubeconfig --name ${{ secrets.CLUSTER_NAME_EKS }}
+
+      - name: Delete Kubernetes Configuration
+        run: |
+          if kubectl get deployment,services,secrets,hpa,configmaps --selector="app in (${{ secrets.APP_NAME }}, ${{ secrets.APP_NAME_PEDIDO }}, ${{ secrets.APP_NAME_PAGAMENTO }}, ${{ secrets.APP_NAME_PRODUCAO }}, ${{ secrets.GATEWAY_NAME }})"; then
+            echo "Resources exist, proceeding with deletion"
+            kubectl delete deployment,services,secrets,hpa,configmaps --selector="app in (${{ secrets.APP_NAME }}, ${{ secrets.APP_NAME_PEDIDO }}, ${{ secrets.APP_NAME_PAGAMENTO }}, ${{ secrets.APP_NAME_PRODUCAO }}, ${{ secrets.GATEWAY_NAME }})"
+          else
+            echo "No resources found, skipping deletion"
+          fi
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Initialize Terraform
+        run: terraform init -reconfigure
+        working-directory: ./terraform
+
+      - name: Destroy Terraform
+        run: terraform apply -destroy -auto-approve
+        working-directory: ./terraform
