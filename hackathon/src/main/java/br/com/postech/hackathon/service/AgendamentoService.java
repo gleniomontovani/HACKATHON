@@ -7,5 +7,5 @@ public interface AgendamentoService {
 
 	public AgendamentoResponse cadastrarAgendamento(AgendamentoRequest agendamento);
 	
-	public void aceitarConsulta(Long agendamentoId, String crm, String status);
+	public AgendamentoResponse aceitarConsulta(Long agendamentoId, String crm, String status);
 }

@@ -9,10 +9,7 @@ FROM eclipse-temurin:17-jdk-alpine
 EXPOSE 8080
 COPY --from=build /app/target/hackathon-1.0.0.jar hackathon.jar
 
-ARG URL_COGNITO
 
-ENV URL_COGNITO=$URL_COGNITO
-
-ENV JAVA_APP_ARGS="--spring.config.location=/src/main/resources/application.yaml"
+ENV JAVA_APP_ARGS="--spring.config.location=/src/main/resources/application.properties"
 
 ENTRYPOINT ["java","-jar","hackathon.jar", "$JAVA_APP_ARGS"]

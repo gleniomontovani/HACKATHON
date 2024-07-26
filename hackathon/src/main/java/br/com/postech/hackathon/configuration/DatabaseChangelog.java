@@ -1,6 +1,5 @@
 package br.com.postech.hackathon.configuration;
 
-import org.bson.Document;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import io.mongock.api.annotations.BeforeExecution;

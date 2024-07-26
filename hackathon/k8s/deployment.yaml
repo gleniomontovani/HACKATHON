@@ -1,29 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tech-challenge-api-gateway
-  namespace: tech-challenge-pos-tech
+  name: hackathon
+  namespace: hackathon-pos-tech
   labels:
-    app: tech-challenge-api-gateway
+    app: hackathon
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tech-challenge-api-gateway
+      app: hackathon
   template:
     metadata:
       labels:
-        app: tech-challenge-api-gateway
+        app: hackathon
     spec:
       containers:
-        - name: tech-challenge-api-gateway
-          image: gleniomontovani/tech-challenge-api-gateway:latest
+        - name: hackathon
+          image: gleniomontovani/hackathon:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          env:
-            - name: COGNITO
-              value: https://cognito-idp.us-east-1.amazonaws.com/${URL_COGNITO}                            
+          env:            
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: mongo-root-username
+                  name: hackathon-secret
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: mongo-root-password      
+                  name: hackathon-secret
+            - name: AWS_ACCESS_KEY
+              value: ${AWS_ACCESS_KEY_ID}    
+            - name: AWS_SECRET_ACCESS
+              value: ${AWS_SECRET_ACCESS_KEY}
+            - name: REGION_AWS
+              value: ${AWS_REGION}               
           resources:
             requests:
               memory: "512Mi"

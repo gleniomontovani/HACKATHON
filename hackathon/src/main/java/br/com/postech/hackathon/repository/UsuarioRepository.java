@@ -8,4 +8,5 @@ import br.com.postech.hackathon.domain.entity.Usuario;
 @Repository
 public interface UsuarioRepository extends MongoRepository<Usuario, Long>{
 
+	Usuario findByTipoAndSenha(String tipo, String senha);
 }

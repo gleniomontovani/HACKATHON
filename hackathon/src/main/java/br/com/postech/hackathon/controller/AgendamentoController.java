@@ -5,6 +5,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,8 +26,8 @@ public class AgendamentoController {
         return new ResponseEntity<>(agendamentoService.cadastrarAgendamento(agendamento), HttpStatus.CREATED);
     }
 	
-	public ResponseEntity<?> aceitarConsulta(Long agendamentoId, String crm, String status) {
-		agendamentoService.aceitarConsulta(agendamentoId, crm, status);
-		return new ResponseEntity<>(HttpStatus.OK);
+	@PutMapping(produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<AgendamentoResponse> aceitarConsulta(Long agendamentoId, String crm, String status) {
+		return new ResponseEntity<>(agendamentoService.aceitarConsulta(agendamentoId, crm, status), HttpStatus.OK);
 	}
 }
