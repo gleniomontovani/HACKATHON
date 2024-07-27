@@ -40,7 +40,9 @@ Segue abaixo o desenho de infraestrutura definido:
 
 ###### 2.2. Requisitos de negócio (problema).
 
-Para esta solução usamos a arquitetura monolitica e conteinerização para garantir a escalabilidade e desempenho da aplicação. Também disponibilizamos a aplicação na Cloud AWS da Amazon para garantir a disponibilidade 24/7 da aplicação.
+Para esta solução usamos a arquitetura monolitica e conteinerização para garantir a escalabilidade e desempenho da aplicação. <br>
+Também disponibilizamos a aplicação na Cloud AWS da Amazon para garantir a disponibilidade 24/7 da aplicação.<br>
+Já a escolha do banco de dados(MongoDB) se deu porque os requisitos apresentados tinha um grau de preocupação com a segurança da informação, mas não com a necessidade de recuperação em caso de falha ou perca, seja por acidente ou criminosa. Nesse contexto escolhemos o MongoDB pensando em uma melhor performasse frente ao banco SQL.
 
 ###### 2.2.1. Solução Arquitetural.
 Conforme informado anteriormente<sub>[1]</sub>, o padrão arquitetural definido para esse projeto o monolítica. A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que usa uma base de código para executar várias funções comerciais. Todos os componentes de software em um sistema monolítico são interdependentes devido aos mecanismos de troca de dados dentro do sistema.
