@@ -42,13 +42,15 @@ Segue abaixo o desenho de infraestrutura definido:
 
 1. Para esta solução usamos a arquitetura monolitica e conteinerização para garantir a escalabilidade e desempenho da aplicação. <br>
 1. Também disponibilizamos a aplicação na Cloud AWS da Amazon para garantir a disponibilidade 24/7 da aplicação.<br>
-1. Já a escolha do banco de dados(MongoDB) se deu porque os requisitos apresentados tinha um grau de preocupação com a segurança da informação, mas não com a necessidade de recuperação em caso de falha ou perca, seja por acidente ou criminosa. Nesse contexto escolhemos o MongoDB pensando em uma melhor performasse frente ao banco SQL.
+1. Já a escolha do banco de dados(MongoDB) se deu porque os requisitos apresentados tinham um grau de preocupação com a segurança da informação, mas não com a necessidade de recuperação em caso de falha ou perca, seja por acidente ou criminosa. Nesse contexto escolhemos o MongoDB pensando em uma melhor performasse frente ao banco SQL.
 
 ###### 2.2.1. Solução Arquitetural.
-Conforme informado anteriormente<sub>[1]</sub>, o padrão arquitetural definido para esse projeto o monolítica. A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que usa uma base de código para executar várias funções comerciais. Todos os componentes de software em um sistema monolítico são interdependentes devido aos mecanismos de troca de dados dentro do sistema.
+Conforme informado anteriormente<sub>[1]</sub>, o padrão arquitetural definido para esse projeto foi o monolíto. A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que usa uma base de código para executar várias funções comerciais. Todos os componentes de software em um sistema monolítico são interdependentes devido aos mecanismos de troca de dados dentro do sistema.
 
-Para esse módulo, aplicamos esse conceito da seguinte forma:
-![Arquitetura de Microserviços!](mvp.png "Arquitetura de Microserviços")
+Segue abaixo o MVP com base na arquitetura definida:
+![MVP!](mvp.png "MVP")
+
+**Lembrete:** Na imagem pode-se observar nas setas informações das requisições que seguem a mesmas ordem definida nos "Requisitos Funcionais" da documentação apresentada pelo cliente.
 
 ###### 2.2.2. Requisitos Não Funcionais.
 1. Alta Disponibilidade - Para atender esse item usamos a Cloud AWS Amazon, no qual podemos fazer replicas usando conteiners.<br>
@@ -59,12 +61,12 @@ Para esse módulo, aplicamos esse conceito da seguinte forma:
 
 1. Primeiro suba a infraestrutura de serviços da AWS como: [EKS, EC2, Cognito e VPC](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/create_infra_api.yml).
 1. Agora rode a pipeline da [aplicação](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/deployment.yml).
-1. Para deletar os componentes após os testes [rode](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/destroy_infra_api.yml).
+1. Para deletar os componentes [rode](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/destroy_infra_api.yml).
 
-As infraestrutura de serviços AWS estão com as pipeline configuradas para rodarem de forma manual. Já as pipeline da API Rest rodaram com um Pull Request para a branch main.
+As infraestrutura de serviços AWS estão com as pipeline configuradas para rodarem de forma manual. Já as pipeline da aplicação rodará com um Pull Request para a branch main.
 
 
 &nbsp;
 ---
 
-> * Para utilizar as APIs, baixe o arquivo [JSON](https://github.com/gleniomontovani/HACKATHON/blob/main/hackathon/Hackathon.postman_collection.json), faça a importação no Postaman e altere a URL para a que foi gerada no Loand Balancer da AWS.
+> * Para utilizar a aplicação, baixe o arquivo [JSON](https://github.com/gleniomontovani/HACKATHON/blob/main/hackathon/Hackathon.postman_collection.json), faça a importação no Postaman e altere a URL para a que foi gerada no Loand Balancer da AWS.
