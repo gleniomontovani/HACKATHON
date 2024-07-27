@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.postech.hackathon.domain.model.request.AgendamentoRequest;
@@ -26,8 +27,9 @@ public class AgendamentoController {
         return new ResponseEntity<>(agendamentoService.cadastrarAgendamento(agendamento), HttpStatus.CREATED);
     }
 	
-	@PutMapping(produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<AgendamentoResponse> aceitarConsulta(Long agendamentoId, String crm, String status) {
+	@PutMapping(produces = MediaType.APPLICATION_JSON, params = { "agendamentoId", "crm", "status" })
+	public ResponseEntity<AgendamentoResponse> aceitarConsulta(@RequestParam Long agendamentoId,
+			@RequestParam String crm, @RequestParam String status) {
 		return new ResponseEntity<>(agendamentoService.aceitarConsulta(agendamentoId, crm, status), HttpStatus.OK);
 	}
 }

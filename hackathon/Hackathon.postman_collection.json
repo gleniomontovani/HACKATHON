@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "25500b5e-9dfb-48d1-b019-f4074b9c36df",
+		"name": "Hackathon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3488196",
+		"_collection_link": "https://multify.postman.co/workspace/Team-Workspace~106acfb5-c423-45db-8797-c8e0c9ed9cad/collection/3488196-25500b5e-9dfb-48d1-b019-f4074b9c36df?action=share&source=collection_link&creator=3488196"
+	},
+	"item": [
+		{
+			"name": "Medico",
+			"item": [
+				{
+					"name": "Buscar Medicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/medicos?especialidade=Cardiologista&avaliacao=5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"medicos"
+							],
+							"query": [
+								{
+									"key": "especialidade",
+									"value": "Cardiologista"
+								},
+								{
+									"key": "avaliacao",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agendamento",
+			"item": [
+				{
+					"name": "Cadastra/Editar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paciente\":{}, \r\n    \"medico\":{}, \r\n    \"dataAgendamento\": \"2024-07-26 20:20:59\", \r\n\t\"statusMedico\": \"aceito\", \r\n    \"statusPaciente\": null, \r\n    \"justificativaCancelamento\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/agendamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"agendamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aprovar Agendamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/agendamentos?agendamentoId=1&crm=12345&status=aceito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"agendamentos"
+							],
+							"query": [
+								{
+									"key": "agendamentoId",
+									"value": "1"
+								},
+								{
+									"key": "crm",
+									"value": "12345"
+								},
+								{
+									"key": "status",
+									"value": "aceito"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/usuarios?type=medico&login=12345&senha=123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "medico"
+								},
+								{
+									"key": "login",
+									"value": "12345"
+								},
+								{
+									"key": "senha",
+									"value": "123456"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
