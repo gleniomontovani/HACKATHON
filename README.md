@@ -1,4 +1,4 @@
-<h1 align="center">Tech Challenge - Turma 4SOAT - Grupo 68</h1>
+<h1 align="center">Hackathon - Turma 4SOAT - Grupo 68</h1>
 
 <span style="font-family:Times New Roman; font-size:13px;">
 
