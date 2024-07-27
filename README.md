@@ -21,7 +21,7 @@ contratou os alunos do curso (SOAT) para fazer a análise do projeto e a arquite
 ##### 1. Informações do projeto:
 
 1. **Módulo:** Backend.
-1. **Arquitetura:** Arquitetura de Monolítica.
+1. **Arquitetura:** Arquitetura Monolítica.
 1. **Padrões de Codificação:** Hexagonal.
 1. **Linguagem:** Java versão 17.
 1. **Banco de Dados:** MongoDB.
@@ -40,9 +40,12 @@ Segue abaixo o desenho de infraestrutura definido:
 
 ###### 2.2. Requisitos de negócio (problema).
 
-1. Para esta solução usamos a arquitetura monolitica e conteinerização para garantir a escalabilidade e desempenho da aplicação. <br>
-1. Também disponibilizamos a aplicação na Cloud AWS da Amazon para garantir a disponibilidade 24/7 da aplicação.<br>
-1. Já a escolha do banco de dados(MongoDB) se deu porque os requisitos apresentados tinham um grau de preocupação com a segurança da informação, mas não com a necessidade de recuperação em caso de falha ou perca, seja por acidente ou criminosa. Nesse contexto escolhemos o MongoDB pensando em uma melhor performasse frente ao banco SQL.
+1. Para garantir a escalabilidade da aplicação usamos o conceito de conteinerização através do AWS EKS, como pode ser vista na arquitetura de infraestrura. <br>
+1. Para garantir a a disponibilidade 24/7 da aplicação usaremos a Cloud AWS da Amazon.<br>
+1. O banco de dados escolhemos MongoDB. Apesar de haver uma preocupação com a segurança dos prontuários medicos por ser dados sensiveis, 
+não houve manifestação acerca de recuperação em caso de falha ou perca, seja por acidente ou criminosa. Nesse contexto escolhemos o MongoDB pensando em uma melhor performasse frente ao banco SQL.
+
+**Lembrete:** Todas configurações Kubernetes podem ser ajustada conforme necessidade na pasta [k8s](https://github.com/gleniomontovani/HACKATHON/tree/main/hackathon/k8s)
 
 ###### 2.2.1. Solução Arquitetural.
 Conforme informado anteriormente<sub>[1]</sub>, o padrão arquitetural definido para esse projeto foi o monolíto. A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que usa uma base de código para executar várias funções comerciais. Todos os componentes de software em um sistema monolítico são interdependentes devido aos mecanismos de troca de dados dentro do sistema.
