@@ -40,7 +40,7 @@ Segue abaixo o desenho de infraestrutura definido:
 
 ###### 2.2. Requisitos de negócio (problema).
 
-1. Para garantir a escalabilidade da aplicação usamos o conceito de conteinerização através do AWS EKS, como pode ser vista na arquitetura de infraestrura. <br>
+1. Para garantir a escalabilidade da aplicação usamos o conceito de conteinerização através do AWS EKS, como pode ser vista na arquitetura de infraestrura<sub>[2.1.1]</sub>. <br>
 1. Para garantir a disponibilidade 24/7 da aplicação usaremos a Cloud AWS da Amazon.<br>
 1. O banco de dados escolhemos MongoDB. Apesar de haver uma preocupação com a segurança dos prontuários médicos por ser dados sensíveis, 
 não houve manifestação acerca de recuperação em caso de falha ou perca, seja por acidente ou criminosa. Nesse contexto escolhemos o MongoDB pensando em uma melhor performasse frente ao banco SQL.
@@ -57,7 +57,7 @@ Segue abaixo o MVP com base na arquitetura definida:
 
 ###### 2.2.2. Requisitos Não Funcionais.
 1. Alta Disponibilidade - Para atender esse item usamos a Cloud AWS Amazon, no qual podemos fazer réplicas usando conteiners.<br>
-1. Escalabilidade - Para o requisitos de estalabilidade, usando o conceito de dockerização e orquestração de conteiner com Kubernetes. <br>
+1. Escalabilidade - Para o requisitos de estalabilidade, usando o conceito de dockerização e orquestração de conteiner com kubernetes<sub>[2.2]</sub>.<br>
 1. Segurança - Para trazer segurança, utilizando o AWS Cognito para fazer a autenticação dos usuários. 
 
 ##### 3. Configuração e Execução:
