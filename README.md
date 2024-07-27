@@ -3,8 +3,8 @@
 <span style="font-family:Times New Roman; font-size:13px;">
 
 <div align="justify">
-A Health&Med, uma startup inovadora no setor de saúde, está desenvolvendo um novo sistema que irá revolucionar a Telemedicina no país. Atualmente, a startup
-oferece a possibilidade de agendamento de consultas e realização de consultas online (Telemedicina) por meio de sistemas terceiros como Google Agenda e
+A Health&Med, uma startup inovadora no setor de saúde, está desenvolvendo um novo sistema que irá revolucionar a Telemedicina no País. Atualmente, a startup
+oferece a possibilidade de agendamento e realização de consultas online (Telemedicina) por meio de sistemas terceiros, como Google Agenda e
 Google Meetings.<br><br>
 Recentemente, a empresa recebeu um aporte e decidiu investir no desenvolvimento de um sistema proprietário, visando proporcionar um serviço de
 maior qualidade, segurança dos dados dos pacientes e redução de custos. O objetivo é criar um sistema robusto, escalável e seguro que permita o
@@ -18,7 +18,7 @@ contratou os alunos do curso (SOAT) para fazer a análise do projeto e a arquite
 </div>
 
 
-##### 1. Informações do projeto:
+##### 1. Informações do Projeto:
 
 1. **Módulo:** Backend.
 1. **Arquitetura:** Arquitetura Monolítica.
@@ -41,14 +41,14 @@ Segue abaixo o desenho de infraestrutura definido:
 ###### 2.2. Requisitos de negócio (problema).
 
 1. Para garantir a escalabilidade da aplicação usamos o conceito de conteinerização através do AWS EKS, como pode ser vista na arquitetura de infraestrura. <br>
-1. Para garantir a a disponibilidade 24/7 da aplicação usaremos a Cloud AWS da Amazon.<br>
-1. O banco de dados escolhemos MongoDB. Apesar de haver uma preocupação com a segurança dos prontuários medicos por ser dados sensiveis, 
+1. Para garantir a disponibilidade 24/7 da aplicação usaremos a Cloud AWS da Amazon.<br>
+1. O banco de dados escolhemos MongoDB. Apesar de haver uma preocupação com a segurança dos prontuários médicos por ser dados sensíveis, 
 não houve manifestação acerca de recuperação em caso de falha ou perca, seja por acidente ou criminosa. Nesse contexto escolhemos o MongoDB pensando em uma melhor performasse frente ao banco SQL.
 
-**Lembrete:** Todas configurações Kubernetes podem ser ajustada conforme necessidade na pasta [k8s](https://github.com/gleniomontovani/HACKATHON/tree/main/hackathon/k8s)
+**Lembrete:** Todas as configurações Kubernetes podem ser ajustadas conforme necessidade na pasta [k8s](https://github.com/gleniomontovani/HACKATHON/tree/main/hackathon/k8s)
 
 ###### 2.2.1. Solução Arquitetural.
-Conforme informado anteriormente<sub>[1]</sub>, o padrão arquitetural definido para esse projeto foi o monolíto. A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que usa uma base de código para executar várias funções comerciais. Todos os componentes de software em um sistema monolítico são interdependentes devido aos mecanismos de troca de dados dentro do sistema.
+Conforme informado anteriormente<sub>[1]</sub>, o padrão arquitetural definido para esse projeto foi o Monolíto. A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que usa uma base de código para executar várias funções comerciais. Todos os componentes de software em um sistema monolítico são interdependentes devido aos mecanismos de troca de dados dentro do sistema.
 
 Segue abaixo o MVP com base na arquitetura definida:
 ![MVP!](mvp.png "MVP")
@@ -56,7 +56,7 @@ Segue abaixo o MVP com base na arquitetura definida:
 **Lembrete:** Na imagem pode-se observar nas setas informações das requisições que seguem a mesmas ordem definida nos "Requisitos Funcionais" da documentação apresentada pelo cliente.
 
 ###### 2.2.2. Requisitos Não Funcionais.
-1. Alta Disponibilidade - Para atender esse item usamos a Cloud AWS Amazon, no qual podemos fazer replicas usando conteiners.<br>
+1. Alta Disponibilidade - Para atender esse item usamos a Cloud AWS Amazon, no qual podemos fazer réplicas usando conteiners.<br>
 1. Escalabilidade - Para o requisitos de estalabilidade, usando o conceito de dockerização e orquestração de conteiner com Kubernetes. <br>
 1. Segurança - Para trazer segurança, utilizando o AWS Cognito para fazer a autenticação dos usuários. 
 
