@@ -1,17 +1,9 @@
  name: Build and Deploy Hackathon
 
- # on:
- #   pull_request:
- #      branches: [main]
-
  on:
-  workflow_dispatch:
-    inputs:
-      dir:
-        description: 'Directory with resources to make deploy'
-        required: true
-        default: 'hackathon'
-      
+   pull_request:
+     branches: [main]
+
  jobs:
    environment:
     runs-on: ubuntu-latest
@@ -55,8 +47,7 @@
          with:
            distribution: 'temurin'
            java-version: '17'  
-             
-       
+
        - name: Build Project
          run: |
            cd $GITHUB_WORKSPACE/hackathon
@@ -68,7 +59,7 @@
        - name: Build Docker Image
          run: |
            cd $GITHUB_WORKSPACE/hackathon
-           docker build --build-arg AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} --build-arg AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} --build-arg AWS_REGION=${{ secrets.AWS_DEFAULT_REGION }} -t ${{ secrets.DOCKER_PEDIDO_IMAGE }} .
+           docker build -t ${{ secrets.DOCKER_HACKATHON_IMAGE }} .
 
        - name: Push Image Docker
          run: |

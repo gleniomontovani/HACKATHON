@@ -6,7 +6,7 @@ on:
       dir:
         description: 'Diretório com os recursos a serem criados.'
         required: true
-        default: 'terraform'
+        default: 'infraestrutura-terraform'
 
 jobs:
   terraform:
