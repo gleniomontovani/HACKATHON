@@ -62,9 +62,9 @@ Segue abaixo o MVP com base na arquitetura definida:
 
 ##### 3. Configuração e Execução:
 
-1. Primeiro suba a infraestrutura de serviços da AWS como: [EKS, EC2, Cognito e VPC](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/create_infra_api.yml).
-1. Agora rode a pipeline da [aplicação](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/deployment.yml).
-1. Para deletar os componentes [rode](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/destroy_infra_api.yml).
+1. Primeiro suba a infraestrutura de serviços da AWS como: [EKS, EC2, Cognito e VPC](https://github.com/gleniomontovani/HACKATHON/actions/workflows/create_infra_api.yml).
+1. Agora rode a pipeline da [aplicação](https://github.com/gleniomontovani/HACKATHON/actions/workflows/deployment.yml).
+1. Para deletar os componentes [rode](https://github.com/gleniomontovani/HACKATHON/actions/workflows/destroy_infra_api.yml).
 
 As infraestrutura de serviços AWS estão com as pipeline configuradas para rodarem de forma manual. Já as pipeline da aplicação rodará com um Pull Request para a branch main.
 
