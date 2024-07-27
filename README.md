@@ -65,4 +65,4 @@ As infraestrutura de serviços AWS estão com as pipeline configuradas para roda
 &nbsp;
 ---
 
-> * Para utilizar as APIs, baixe o arquivo [JSON](https://github.com/gleniomontovani/HACKATHON/tree/main/hackathon/blob/main/Hackathon.postman_collection.json), faça a importação no Postaman e altere a URL para a que foi gerada no Loand Balancer da AWS.
+> * Para utilizar as APIs, baixe o arquivo [JSON](https://github.com/gleniomontovani/HACKATHON/blob/main/hackathon/Hackathon.postman_collection.json), faça a importação no Postaman e altere a URL para a que foi gerada no Loand Balancer da AWS.
