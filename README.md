@@ -21,7 +21,7 @@ contratou os alunos do curso (SOAT) para fazer a análise do projeto e a arquite
 ##### 1. Informações do projeto:
 
 1. **Módulo:** Backend.
-1. **Arquitetura:** Rest API com Frontend Typescript.
+1. **Arquitetura:** Arquitetura de Monolítica.
 1. **Padrões de Codificação:** Hexagonal.
 1. **Linguagem:** Java versão 17.
 1. **Banco de Dados:** MongoDB.
@@ -40,19 +40,24 @@ Segue abaixo o desenho de infraestrutura definido:
 
 ###### 2.2. Requisitos de negócio (problema).
 
-Para esta solução usamos o padrão SAGA Coreografada, pois dada que o projeto é de pequeno porte e não temos muita complexidade negocial, este padrão será o mais adequado dado a sua simplicidade de implantação e compreensão. Também ajustamos todos os mestodos para atender as propriedades de ACID para fazer contramedidas caso as transações venham a falhar.
+Para esta solução usamos a arquitetura monolitica e conteineirização para garantir a escalabilidade e desempenho da aplicação. Também disponibilizamos a aplicação na Cloud AWS da Amazon para garantir a disponibilidade 24/7 da aplicação.
 
-###### 2.2.1. Arquitetura de Microserviços.
-Conforme informado anteriormente<sub>[1]</sub>, o padrão arquitetural definido para esse projeto foi a de microserviços. A arquitetura de microsserviços (geralmente chamada de microsserviços) refere-se a um estilo de arquitetura para o desenvolvimento de aplicativos. Os microsserviços permitem que um aplicativo grande seja separado em partes independentes menores, com cada parte tendo sua própria responsabilidade. Para atender a uma única solicitação do usuário, um aplicativo baseado em microsserviços pode chamar muitos microsserviços internos para compor a resposta.
+###### 2.2.1. Solução Arquitetural.
+Conforme informado anteriormente<sub>[1]</sub>, o padrão arquitetural definido para esse projeto foi a de monolítica. A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que usa uma base de código para executar várias funções comerciais. Todos os componentes de software em um sistema monolítico são interdependentes devido aos mecanismos de troca de dados dentro do sistema.
+
+###### 2.2.2. Requisitos Não Funcionais.
+1. Para o requisitos de estalabilidade, usando o conceito de dockerização e orquestração de conteiner com Kubernetes. A implementação foi feita no AWS EKS.<br>
+1. Para fazer a autenticação dos usuários usamos AWS Cognitos, no qual teremos uma autenticação usando Token com JWT. 
 
 Para esse módulo, aplicamos esse conceito da seguinte forma:
 
-![Arquitetura de Microserviços!](src/main/resources/images/clean-architecture.png "Arquitetura de Microserviços")
+![Arquitetura de Microserviços!](mvp.png "Arquitetura de Microserviços")
 
 
 ##### 3. Configuração e Execução:
 
-1. Depois suba a infraestrutura de serviços da AWS como: [EKS, EC2, Cognito e VPC](https://github.com/gleniomontovani/tech-challenge-pos-tech-infraestrutura-terraform/actions/workflows/create_infra_api.yml).
-1. Agora rode a pipeline da [API Rest](https://github.com/gleniomontovani/tech-challenge-api-gateway/actions/workflows/deploy_aplication.yml)
+1. Primeiro suba a infraestrutura de serviços da AWS como: [EKS, EC2, Cognito e VPC](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/create_infra_api.yml).
+1. Agora rode a pipeline da [aplicação](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/deployment.yml)
+1. Para deletar os componentes após os testes [rode](https://github.com/gleniomontovani/HACKATHON/blob/main/.github/workflows/destroy_infra_api.yml)
 
 As infraestrutura de serviços AWS estão com as pipeline configuradas para rodarem de forma manual. Já as pipeline da API Rest rodaram com um Pull Request para a branch main.
